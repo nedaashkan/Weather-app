@@ -37,6 +37,9 @@ a {
 a:hover {
   color: #afdfff;
 }
+.github-link {
+  color: #afdfff;
+}
 .search-box {
   font-size: 20px;
   font-weight: 300;
