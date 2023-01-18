@@ -7,28 +7,21 @@ body {
   color: #ffffff;
   text-shadow: -1.51px 2.26px 0.75px rgba(0, 0, 0, 0.1);
   font-family: "Inter", sans-serif;
-  background-color: rgb(66, 73, 90);
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 h1 {
   font-size: 20px;
   font-weight: 300;
   line-height: 31px;
-  margin: 0;
 }
 h2 {
   font-weight: 100;
   font-size: 80px;
   line-height: 156px;
-  margin: 0;
 }
 h3 {
   font-weight: 400;
   font-size: 15px;
   line-height: 30px;
-  text-align: center;
 }
 a {
   text-decoration: none;
@@ -36,6 +29,12 @@ a {
 }
 a:hover {
   color: #afdfff;
+}
+.weather-app {
+  /* background: linear-gradient(248.66deg, #F0B5CE 0%, #8C6BAE 100%); */
+  background: linear-gradient(248.66deg, #a28f8f 0%, #0b3638 100%);
+  border-radius: 10px;
+  padding: 10px 15px;
 }
 .github-link {
   color: #afdfff;
@@ -70,7 +69,6 @@ a:hover {
   border-radius: 8px;
   height: 54px;
   padding: 0 12px;
-  margin-left: 10px;
   transition: all ease-in-out 200ms;
 }
 .current-btn:hover {
@@ -99,17 +97,11 @@ textarea {
   margin: 0 5px;
   font-size: 20px;
 }
-.weather {
-  font-weight: 300;
-  font-size: 20px;
-}
 .celsius,
 .fahrenheit {
   font-size: 18px;
 }
-.weather-number-icon {
-  display: flex;
-}
+
 .today-weather-icon {
   width: 120px;
 }
@@ -119,25 +111,44 @@ textarea {
   font-size: 22px;
   line-height: 120%;
 }
-
-.next-icon {
-  margin-top: 75px;
-}
 .card {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
 }
-.daily-weather {
-  display: flex;
-  justify-content: space-around;
+.col-1 {
+  border: 1px solid rgb(255, 0, 0);
 }
-.weather-info,
-.day-time,
-.daily-weather,
-.fahrenheit-celsius-btn,
-.search-icon-box,
-.location-and-icon,
-.current-btn {
-  margin-top: 10px;
+.col-2 {
+  border: 1px solid rgb(255, 115, 0);
+}
+.col-3 {
+  border: 1px solid rgb(255, 238, 0);
+}
+.col-4 {
+  border: 1px solid rgb(115, 255, 0);
+}
+.col-5 {
+  border: 1px solid rgb(0, 255, 170);
+}
+.col-6 {
+  border: 1px solid rgb(0, 38, 255);
+}
+.col-7 {
+  border: 1px solid rgb(93, 9, 100);
+}
+.col-8 {
+  border: 1px solid rgb(255, 18, 196);
+}
+.col-9 {
+  border: 1px solid rgb(80, 40, 52);
+}
+.col-10 {
+  border: 1px solid rgb(10, 44, 7);
+}
+.col-11 {
+  border: 1px solid rgb(0, 132, 255);
+}
+.col-12 {
+  border: 1px solid rgb(223, 255, 80);
 }

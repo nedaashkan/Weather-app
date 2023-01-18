@@ -32,8 +32,8 @@ timeEl.textContent = time(now);
 // start search box
 let celsiusFahrenheitBox = document.querySelector("#c-f-box");
 let precipitationBox = document.querySelector("#precipitation-box");
-celsiusFahrenheitBox.style.display = "none";
-precipitationBox.style.display = "none";
+celsiusFahrenheitBox.style.display = "block";
+precipitationBox.style.display = "block";
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchButton);
 function searchButton(event) {
