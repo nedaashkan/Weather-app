@@ -1,20 +1,18 @@
-let now = new Date();
-
-// start day
-let weekdays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = weekdays[now.getDay()];
-let dayEl = document.querySelector("#day-el");
-dayEl.textContent = day;
-
-//  start time hour and  minutes
+// day
+function day(now) {
+  let weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = weekdays[now.getDay()];
+  return day;
+}
+// time , hour and  minutes
 function time(now) {
   let hour = now.getHours();
   if (hour < 10) {
@@ -26,34 +24,50 @@ function time(now) {
   }
   return `${hour}:${minutes}`;
 }
-let timeEl = document.querySelector("#time-el");
-timeEl.textContent = time(now);
+// date , month
+function date(now) {
+  let monthsName = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let date = now.getDate();
+  let month = monthsName[now.getMonth()];
+  return `${month}‘ ${date}`;
+}
 
-// start search box
-let celsiusFahrenheitBox = document.querySelector("#c-f-box");
-let precipitationBox = document.querySelector("#precipitation-box");
-celsiusFahrenheitBox.style.display = "block";
-precipitationBox.style.display = "block";
+//searchButton
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchButton);
 function searchButton(event) {
   event.preventDefault();
   let input = document.querySelector("#input-el");
-  let cityName = input.value;
+  search(input.value);
+}
+// search box
+search("urmia");
+function search(cityName) {
   let appKey = "ab8e7ef210556986d1c9a75d6007b825";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appKey}&units=metric`;
-  axios.get(apiUrl).then(cityTemperature);
+  axios.get(apiUrl).then(displayTemperature);
 }
-
-function cityTemperature(response) {
-  console.log(response.data);
-  let cityDisplay = document.querySelector("#city-el");
+function displayTemperature(response) {
+  let cityCountryDisplay = document.querySelector("#city-country-el");
   let city = response.data.name;
   let country = response.data.sys.country;
-  cityDisplay.innerHTML = `${city},${country}`;
+  cityCountryDisplay.innerHTML = `${city},${country}`;
   let temperatureDisplay = document.querySelector("#temperature-el");
-  let temperature = Math.round(response.data.main.temp);
-  temperatureDisplay.innerHTML = `${temperature}°C`;
+  let celsiusTemperature = Math.round(response.data.main.temp);
+  temperatureDisplay.innerHTML = `${celsiusTemperature}°C`;
   let humidityDisplay = document.querySelector("#humidity-el");
   let humidity = response.data.main.humidity;
   humidityDisplay.innerHTML = `${humidity} %`;
@@ -63,10 +77,21 @@ function cityTemperature(response) {
   let descriptionDisplay = document.querySelector("#description-el");
   let description = response.data.weather[0].main;
   descriptionDisplay.innerHTML = description;
+  let timeEl = document.querySelector("#time-el");
+  timeEl.innerHTML = time(new Date(response.data.dt * 1000));
+  let dayEl = document.querySelector("#day-el");
+  dayEl.innerHTML = day(new Date(response.data.dt * 1000));
+  let dateEl = document.querySelector("#date-el");
+  dateEl.innerHTML = date(new Date(response.data.dt * 1000));
+  let weatherIconDisplay = document.querySelector("#weather-icon-el");
+  weatherIconDisplay.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  weatherIconDisplay.setAttribute("alt", response.data.weather[0].description);
 }
 
-// start current button
-
+// current button
 let currentBtn = document.querySelector("#current-btn");
 currentBtn.addEventListener("click", getCurrentPosition);
 function showPosition(position) {
@@ -81,23 +106,27 @@ function getCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-// start month
-let monthsName = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+// display fahrenheit
+let displayFahrenheitTemperatureBtn = document.querySelector("#fahrenheit-el");
+displayFahrenheitTemperatureBtn.addEventListener(
+  "click",
+  displayFahrenheitTemperature
+);
 
-let month = monthsName[now.getMonth()];
-let date = now.getDate();
-let dateEl = document.querySelector("#date-el");
-dateEl.textContent = `${month}‘ ${date}`;
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureDisplay = document.querySelector("#temperature-el");
+  let fahrenheit = (14 * 9) / 5 + 32;
+  temperatureDisplay.innerHTML = fahrenheit;
+}
+//  display celsius;
+let displayCelsiusTemperatureBtn = document.querySelector("#celsius-el");
+displayCelsiusTemperatureBtn.addEventListener(
+  "click",
+  displayCelsiusTemperature
+);
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureDisplay = document.querySelector("#temperature-el");
+}
