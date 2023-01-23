@@ -73,7 +73,9 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
             <div class="weather-number-icon">
               <div class="c-f-text" id="c-f-box">
-                <span class="celsius"><a href="#" id="celsius-el">°C</a></span>
+                <span class="celsius"
+                  ><a href="#" id="celsius-el" class="active">°C</a></span
+                >
                 <span class="line"></span>
                 <span class="fahrenheit"
                   ><a href="#" id="fahrenheit-el">°F</a></span
@@ -132,74 +134,76 @@
           </div>
         </div>
         <!-- weekly weather information -->
-        <div class="row mt-2 gx-1 gx-lg-2 d-flex justify-content-center">
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>5°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
-                alt="animated cloudy icon"
-                class="w-100"
-              />
-              <h3>Sat</h3>
+        <div id="forecast">
+          <div class="row mt-2 gx-1 gx-lg-2 d-flex justify-content-center">
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>5°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
+                  alt="animated cloudy icon"
+                  class="w-100"
+                />
+                <h3>Sat</h3>
+              </div>
             </div>
-          </div>
 
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>8°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/clear-day.svg"
-                alt="animated sunny icon"
-                class="w-100"
-              />
-              <h3>Sun</h3>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>8°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/clear-day.svg"
+                  alt="animated sunny icon"
+                  class="w-100"
+                />
+                <h3>Sun</h3>
+              </div>
             </div>
-          </div>
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>8°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/clear-day.svg"
-                alt="animated sunny icon"
-                class="w-100"
-              />
-              <h3>Mon</h3>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>8°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/clear-day.svg"
+                  alt="animated sunny icon"
+                  class="w-100"
+                />
+                <h3>Mon</h3>
+              </div>
             </div>
-          </div>
 
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>7°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
-                alt="animated cloudy icon"
-                class="w-100"
-              />
-              <h3>Tue</h3>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>7°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
+                  alt="animated cloudy icon"
+                  class="w-100"
+                />
+                <h3>Tue</h3>
+              </div>
             </div>
-          </div>
 
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>5°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
-                alt="animated cloudy icon"
-                class="w-100"
-              />
-              <h3>Wed</h3>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>5°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
+                  alt="animated cloudy icon"
+                  class="w-100"
+                />
+                <h3>Wed</h3>
+              </div>
             </div>
-          </div>
-          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-            <div class="card w-100">
-              <h3>6°C</h3>
-              <img
-                src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/partly-cloudy-day-sleet.svg"
-                alt="animated snowing icon"
-                class="w-100"
-              />
-              <h3>Thu</h3>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+              <div class="card w-100">
+                <h3>6°C</h3>
+                <img
+                  src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/partly-cloudy-day-sleet.svg"
+                  alt="animated snowing icon"
+                  class="w-100"
+                />
+                <h3>Thu</h3>
+              </div>
             </div>
           </div>
         </div>
@@ -222,4 +226,3 @@
     <script src="js/index.js"></script>
   </body>
 </html>
-<!-- use  col-md also for your lg and center it -->

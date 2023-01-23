@@ -1,3 +1,5 @@
+let forecastDisplay = document.querySelector("#forecast");
+forecastDisplay.style.display = "none";
 // day
 function day(now) {
   let weekdays = [
@@ -44,30 +46,18 @@ function date(now) {
   let month = monthsName[now.getMonth()];
   return `${month}‘ ${date}`;
 }
+let celsiusTemperature = null;
 
-//searchButton
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", searchButton);
-function searchButton(event) {
-  event.preventDefault();
-  let input = document.querySelector("#input-el");
-  search(input.value);
-}
-// search box
-search("urmia");
-function search(cityName) {
-  let appKey = "ab8e7ef210556986d1c9a75d6007b825";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
-}
 function displayTemperature(response) {
   let cityCountryDisplay = document.querySelector("#city-country-el");
   let city = response.data.name;
   let country = response.data.sys.country;
   cityCountryDisplay.innerHTML = `${city},${country}`;
+  // celsiusLink.classList.add("active");
+  // fahrenheitLink.classList.remove("active");
   let temperatureDisplay = document.querySelector("#temperature-el");
-  let celsiusTemperature = Math.round(response.data.main.temp);
-  temperatureDisplay.innerHTML = `${celsiusTemperature}°C`;
+  let celsiusTemperature = response.data.main.temp;
+  temperatureDisplay.innerHTML = `${Math.round(celsiusTemperature)}°C`;
   let humidityDisplay = document.querySelector("#humidity-el");
   let humidity = response.data.main.humidity;
   humidityDisplay.innerHTML = `${humidity} %`;
@@ -106,27 +96,41 @@ function getCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+// search box
+function search(cityName) {
+  let appKey = "ab8e7ef210556986d1c9a75d6007b825";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+//searchButton
+function searchButton(event) {
+  event.preventDefault();
+  let input = document.querySelector("#input-el");
+  search(input.value);
+}
 // display fahrenheit
-let displayFahrenheitTemperatureBtn = document.querySelector("#fahrenheit-el");
-displayFahrenheitTemperatureBtn.addEventListener(
-  "click",
-  displayFahrenheitTemperature
-);
-
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureDisplay = document.querySelector("#temperature-el");
-  let fahrenheit = (14 * 9) / 5 + 32;
-  temperatureDisplay.innerHTML = fahrenheit;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureDisplay.innerHTML = Math.round(fahrenheitTemperature);
 }
 //  display celsius;
-let displayCelsiusTemperatureBtn = document.querySelector("#celsius-el");
-displayCelsiusTemperatureBtn.addEventListener(
-  "click",
-  displayCelsiusTemperature
-);
-
 function displayCelsiusTemperature(event) {
   event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureDisplay = document.querySelector("#temperature-el");
+  temperatureDisplay.innerHTML = Math.round(celsiusTemperature);
 }
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchButton);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-el");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-el");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+search("urmia");
