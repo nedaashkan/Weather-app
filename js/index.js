@@ -1,10 +1,9 @@
-
 // display Weather Forecast
 function displayWeatherForecast(response) {
   let forecast = response.data.daily;
   let forecastDisplay = document.querySelector("#forecast");
   let forecastHtml = `<div class="row mt-2 gx-1 gx-lg-2 d-flex justify-content-center">`;
-  for (let i = 0; i < 6; i++) {
+  for (let i = 1; i < 7; i++) {
     let forecastDay = forecast[i];
     forecastHtml =
       forecastHtml +
@@ -146,9 +145,9 @@ function search(cityName) {
   axios.get(apiUrl).then(displayTemperature);
 }
 //searchButton
+let input = document.querySelector("#input-el");
 function searchButton(event) {
   event.preventDefault();
-  let input = document.querySelector("#input-el");
   search(input.value);
 }
 
