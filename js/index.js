@@ -1,23 +1,29 @@
 function displayWeatherForecast(response) {
-  let forecast = response.data;
+  let forecast = response.data.daily;
   console.log(forecast);
   let forecastDisplay = document.querySelector("#forecast");
-  let days = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
   let forecastHtml = `<div class="row mt-2 gx-1 gx-lg-2 d-flex justify-content-center">`;
-  for (let i = 0; i < days.length; i++) {
+  for (let i = 0; i < 6; i++) {
+    let forecastDay = forecast[i];
     forecastHtml =
       forecastHtml +
       `          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
             <div class="card w-100">
-            <h3>${days[i]}</h3>
+            <h3>${formatDay(new Date(forecastDay.dt * 1000))}</h3>
             <img
-            src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
+            src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png"
                 alt="animated cloudy icon"
                 class="w-100"
                 />
                 <div class ="min-max-temp">
-                  <span id ="max-temp"> 8° </span>
-                  <span id ="min-temp"> 5° </span>
+                  <span id ="max-temp">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span>
+                  <span id ="min-temp">${Math.round(
+                    forecastDay.temp.min
+                  )}°</span>
                 </div>
             </div>
           </div>
@@ -30,6 +36,12 @@ function getForecast(coordinates) {
   let appKey = "ab8e7ef210556986d1c9a75d6007b825";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${appKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherForecast);
+}
+
+function formatDay(now) {
+  let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = weekdays[now.getDay()];
+  return day;
 }
 // day
 function day(now) {
