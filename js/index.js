@@ -1,5 +1,36 @@
-// let forecastDisplay = document.querySelector("#forecast");
-// forecastDisplay.style.display = "none";
+function displayWeatherForecast(response) {
+  let forecast = response.data;
+  console.log(forecast);
+  let forecastDisplay = document.querySelector("#forecast");
+  let days = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
+  let forecastHtml = `<div class="row mt-2 gx-1 gx-lg-2 d-flex justify-content-center">`;
+  for (let i = 0; i < days.length; i++) {
+    forecastHtml =
+      forecastHtml +
+      `          <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+            <div class="card w-100">
+            <h3>${days[i]}</h3>
+            <img
+            src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/cloudy.svg"
+                alt="animated cloudy icon"
+                class="w-100"
+                />
+                <div class ="min-max-temp">
+                  <span id ="max-temp"> 8° </span>
+                  <span id ="min-temp"> 5° </span>
+                </div>
+            </div>
+          </div>
+`;
+  }
+  forecastHtml = forecastHtml + `</div>`;
+  forecastDisplay.innerHTML = forecastHtml;
+}
+function getForecast(coordinates) {
+  let appKey = "ab8e7ef210556986d1c9a75d6007b825";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${appKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherForecast);
+}
 // day
 function day(now) {
   let weekdays = [
@@ -79,6 +110,7 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   weatherIconDisplay.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 
 // current button
