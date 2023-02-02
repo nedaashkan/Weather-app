@@ -1,5 +1,5 @@
-let forecastDisplay = document.querySelector("#forecast");
-forecastDisplay.style.display = "none";
+// let forecastDisplay = document.querySelector("#forecast");
+// forecastDisplay.style.display = "none";
 // day
 function day(now) {
   let weekdays = [
